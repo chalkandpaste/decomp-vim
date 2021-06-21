@@ -5,6 +5,12 @@
 
 echo "Starting the example Python Plugin"
 
-function DoItVimL()
-    echo "hello from DoItVimL"
+function LookupFuncLoc()
+  let wordUnderCursor = expand("<cword>")
+  if match(wordUnderCursor, '^func_0x\(a-f0-9\)') >= 0
+    let loc = '>1'
+    let file_name = join(['0x', loc, '.c'],'')
+    e file_name
+  endif
+
 endfunction
